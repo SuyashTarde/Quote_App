@@ -1,0 +1,85 @@
+<html>
+	<head>
+		<title>App By Suyash</title>
+		<style>
+			* { font-size:50px; }
+			body { 
+				background-image: url('background.jpg');
+				background-size: cover;
+				background-position: center;
+				background-repeat: no-repeat;
+				margin: 0;
+				padding: 0;
+			}
+			.btn {
+				width: 30%;
+				padding: 10px;
+				font-size: 30px;
+				background-color: #333;
+				color: white;
+				border: none;
+				border-radius: 10px;
+				cursor: pointer;
+				transition: background-color 0.3s ease;
+			}
+			.btn:hover {
+				color: red;
+				background-color: #ff9a9e;
+			}
+			.title-box {
+				width: 38%;
+				padding: 20px;
+				border-radius: 20px;
+				background-color: rgba(0, 0, 0, 0.7); 
+				color: white;
+				text-align: center;
+				margin-bottom: 30px;
+				box-shadow: 0 8px 15px rgba(0, 0, 0, 0.3); 
+				border: 2px solid #ff9a9e; 
+			}
+			h1 {
+				margin: 0;
+				font-size: 50px;
+			}
+			h2 {
+				border: groove;
+				width: 50%;
+				border-radius: 40px;
+				background-color: rgba(255, 255, 255, 0.8); 
+				padding: 20px;
+				color: #333;
+			}
+		</style>
+
+		<script>
+			function operations() {
+				event.preventDefault();
+				let msg = document.getElementById("id_msg");
+				let author = document.getElementById("id_author");
+
+				let url = "https://dummyjson.com/quotes/random";
+				fetch(url)
+				.then(res => res.json())
+				.then(data => {
+					msg.innerHTML = data.quote;
+					author.innerHTML = data.author;
+				})
+				.catch(err => msg.innerHTML = "Issue: " + err);
+			}
+		</script>
+	</head>
+	<body>
+		<center>
+			<div class="title-box">
+				<h1>Motivational Message App</h1>
+			</div>
+
+			<form onsubmit="operations()">
+				<input type="submit" value="Get Quote" class="btn" />
+			</form>
+			
+			<h2 id="id_msg"></h2>
+			<h2 id="id_author"></h2>
+		</center>
+	</body>
+</html>
